@@ -123,7 +123,7 @@
 </ul>
 
 <h3>Clonar o projeto</h3>
-<pre><code>git clone &lt;URL_DO_REPOSITORIO&gt; adopet
+<pre><code>git clone https://github.com/Silva-D-Romario/AdoPet.git
 cd adopet</code></pre>
 
 <h3>Executar o backend</h3>
