@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopet | Cadastrar Pet</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa fa-paw"></i></div>
+        <span>Adopet</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+          <i class="bi bi-moon"></i>
+          <i class="bi bi-sun"></i>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+
+      <nav id="nav-auth" class="nav"></nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">
+          <div class="page-title-icon"><i class="bi bi-heart"></i></div>
+          Cadastrar Pet
+        </h1>
+        <p class="page-subtitle">Ajude um animalzinho a encontrar um novo lar</p>
+      </div>
+    </div>
+
+    <div class="form-container form-container-wide">
+      <form id="form-animal" onsubmit="cadastrarAnimal(event)">
+        <div class="form-group">
+          <label class="form-label">
+            <i class="bi bi-type"></i> Nome do Pet
+          </label>
+          <input type="text" id="nome" class="form-input" placeholder="Ex: Rex, Luna, Thor..." required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-list-ul"></i> Especie
+            </label>
+            <select id="especie" class="form-select" required>
+              <option value="">Selecione</option>
+              <option value="Cachorro">Cachorro</option>
+              <option value="Gato">Gato</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-bookmark"></i> Raca
+            </label>
+            <input type="text" id="raca" class="form-input" placeholder="Ex: Vira-lata, Siames...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-calendar3"></i> Idade (anos)
+            </label>
+            <input type="number" id="idade" class="form-input" min="0" value="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="foto">
+              <i class="bi bi-link-45deg"></i> Link da Imagem
+            </label>
+            <input type="url" id="foto" class="form-input" placeholder="https://exemplo.com/foto.jpg" maxlength="500">
+            <small style="color: var(--text-tertiary); display: block; margin-top: var(--space-2);">
+              Cole o link de uma imagem do Google Imagens, por exemplo.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="bi bi-text-paragraph"></i> Descricao
+          </label>
+          <textarea id="descricao" class="form-textarea" rows="4"
+            placeholder="Conte sobre a personalidade, habitos e outras informacoes relevantes do pet..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label mb-4">Saude do pet</label>
+          <div style="display: flex; gap: 1.5rem;">
+            <label class="form-check">
+              <input type="checkbox" id="vacinado">
+              <span class="form-check-label"><i class="bi bi-shield-check"></i> Vacinado</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="castrado">
+              <span class="form-check-label"><i class="bi bi-scissors"></i> Castrado</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-6">
+          <i class="bi bi-check"></i> Cadastrar Pet
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">2024 Adopet. Feito com <i class="bi bi-heart-fill" style="color: var(--primary);"></i> para
+        os animais.</p>
+    </div>
+  </footer>
+
+  <div id="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

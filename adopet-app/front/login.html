@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopet | Entrar</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa fa-paw"></i></div>
+        <span>Adopet</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+          <i class="bi bi-moon"></i>
+          <i class="bi bi-sun"></i>
+        </button>
+      </div>
+
+      <nav id="nav-auth" class="nav"></nav>
+    </div>
+  </header>
+
+  <!-- Auth Page -->
+  <main class="auth-page">
+    <div class="form-container">
+      <!-- Login Form -->
+      <div id="login-form">
+        <div class="form-header">
+          <div class="form-icon">
+            <i class="bi bi-person"></i>
+          </div>
+          <h2 class="form-title">Bem-vindo de volta</h2>
+          <p class="form-subtitle">Entre na sua conta para continuar</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-envelope"></i> Email
+            </label>
+            <input type="email" name="email" class="form-input" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-lock"></i> Senha
+            </label>
+            <input type="password" name="senha" class="form-input" placeholder="Digite sua senha" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="bi bi-arrow-right"></i> Entrar
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Nao tem uma conta? <a href="#" onclick="toggleAuthMode(); return false;">Criar conta</a>
+        </div>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" class="hidden">
+        <div class="form-header">
+          <div class="form-icon">
+            <i class="bi bi-person-plus"></i>
+          </div>
+          <h2 class="form-title">Criar conta</h2>
+          <p class="form-subtitle">Junte-se a nossa comunidade</p>
+        </div>
+
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-person"></i> Nome completo
+            </label>
+            <input type="text" name="nomeCompleto" class="form-input" placeholder="Seu nome completo" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-envelope"></i> Email
+            </label>
+            <input type="email" name="email" class="form-input" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-lock"></i> Senha
+            </label>
+            <input type="password" name="senha" class="form-input" placeholder="Crie uma senha forte" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="bi bi-check"></i> Criar conta
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Ja tem uma conta? <a href="#" onclick="toggleAuthMode(); return false;">Entrar</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

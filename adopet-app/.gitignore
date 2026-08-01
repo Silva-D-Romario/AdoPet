@@ -1,0 +1,45 @@
+# Maven / Java
+back/target/
+*.class
+*.jar
+
+# Banco SQLite local
+back/data/*.db
+back/data/*.db-shm
+back/data/*.db-wal
+
+# IDEs
+.idea/
+back/.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.factorypath
+.settings/
+.springBeans
+.sts4-cache/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs e arquivos temporarios
+*.log
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# Configuracoes locais e segredos
+.env
+.env.*
+!.env.example
+back/src/main/resources/application-local.properties
+back/src/main/resources/application-local.yml
+back/src/main/resources/application-local.yaml
+

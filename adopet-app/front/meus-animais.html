@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopet | Meus Animais</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fa fa-paw"></i></div>
+                <span>Adopet</span>
+            </a>
+            <div class="header-actions">
+                <button class="theme-toggle" onclick="toggleTheme()"><i class="bi bi-moon"></i></button>
+            </div>
+            <nav id="nav-auth" class="nav"></nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div>
+                    <h1 class="page-title">
+                        <div class="page-title-icon"><i class="bi bi-collection"></i></div>
+                        Meus Animais
+                    </h1>
+                    <p class="page-subtitle">Gerencie os animais que você cadastrou para doação</p>
+                </div>
+                <button onclick="abrirModalCadastro()" class="btn btn-primary">
+                    <i class="bi bi-plus-lg"></i> Novo Pet
+                </button>
+            </div>
+        </div>
+
+        <div id="lista-meus-animais" class="grid grid-cols-1 grid-cols-2 grid-cols-3">
+        </div>
+    </main>
+    
+    <!-- Modal Animal -->
+    <div id="modal-animal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="modal-title-icon"><i class="bi bi-heart"></i></div>
+                    <span id="modal-animal-titulo">Novo Animal</span>
+                </div>
+                <button class="modal-close" onclick="fecharModal('modal-animal')">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <form id="form-animal" onsubmit="salvarAnimal(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="animal-id-edit">
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="bi bi-type"></i> Nome do Pet
+                        </label>
+                        <input type="text" id="animal-nome" class="form-input" placeholder="Ex: Rex, Luna, Thor..."
+                            required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="bi bi-list-ul"></i> Especie
+                            </label>
+                            <select id="animal-especie" class="form-select" required>
+                                <option value="">Selecione</option>
+                                <option value="Cachorro">Cachorro</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="bi bi-bookmark"></i> Raca
+                            </label>
+                            <input type="text" id="animal-raca" class="form-input"
+                                placeholder="Ex: Vira-lata, Siames...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="bi bi-calendar3"></i> Idade (anos)
+                            </label>
+                            <input type="number" id="animal-idade" class="form-input" min="0" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="bi bi-image"></i> URL da Foto
+                            </label>
+                            <input type="url" id="animal-foto" class="form-input" placeholder="https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="bi bi-text-paragraph"></i> Descricao
+                        </label>
+                        <textarea id="animal-descricao" class="form-textarea" rows="3"
+                            placeholder="Personalidade, habitos e informacoes relevantes..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Saude do Pet</label>
+                        <div class="form-check-group">
+                            <label class="form-check">
+                                <input type="checkbox" id="animal-vacinado">
+                                <span class="form-check-label"><i class="bi bi-shield-check"></i> Vacinado</span>
+                            </label>
+                            <label class="form-check">
+                                <input type="checkbox" id="animal-castrado">
+                                <span class="form-check-label"><i class="bi bi-scissors"></i> Castrado</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        onclick="fecharModal('modal-animal')">Cancelar</button>
+                    <button type="submit" id="btn-submit-modal" class="btn btn-primary"><i class="bi bi-check-lg"></i>
+                        Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Chama a função ao carregar a página
+        document.addEventListener('DOMContentLoaded', carregarMeusAnimais);
+    </script>
+</body>
+
+</html>

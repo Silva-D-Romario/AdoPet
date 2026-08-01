@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopet | Painel Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa fa-paw"></i></div>
+        <span>Adopet</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+          <i class="bi bi-moon"></i>
+          <i class="bi bi-sun"></i>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+
+      <nav id="nav-auth" class="nav"></nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">
+          <div class="page-title-icon"><i class="bi bi-shield-lock"></i></div>
+          Painel do Administrador
+        </h1>
+        <p class="page-subtitle">Gerencie a plataforma Adopet</p>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon" style="background: var(--info-bg); color: var(--info);"><i class="bi bi-people"></i>
+        </div>
+        <div class="stat-content">
+          <div id="total-usuarios" class="stat-value">0</div>
+          <div class="stat-label">Usuarios</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background: var(--primary-bg); color: var(--primary);"><i class="bi bi-heart"></i>
+        </div>
+        <div class="stat-content">
+          <div id="total-animais" class="stat-value">0</div>
+          <div class="stat-label">Animais</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background: var(--success-bg); color: var(--success);"><i class="bi bi-send"></i>
+        </div>
+        <div class="stat-content">
+          <div id="total-solicitacoes" class="stat-value">0</div>
+          <div class="stat-label">Adoções</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background: var(--purple-bg); color: var(--purple);"><i class="bi bi-truck"></i>
+        </div>
+        <div class="stat-content">
+          <div id="total-transportes" class="stat-value">0</div>
+          <div class="stat-label">Transportes</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background: var(--warning-bg); color: var(--warning);"><i class="bi bi-flag"></i>
+        </div>
+        <div class="stat-content">
+          <div id="total-denuncias" class="stat-value">0</div>
+          <div class="stat-label">Denuncias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Management Section -->
+    <div class="section-card">
+      <div class="section-header">
+        <h2 class="section-title" id="titulo-secao">
+          <i class="bi bi-people stat-icon"></i>
+          Gerenciar Usuarios
+        </h2>
+        <div class="section-controls">
+          <div class="tabs">
+            <button onclick="mudarTab('usuarios')" class="tab-btn active" data-tab="usuarios">
+              <i class="bi bi-people"></i> Usuarios
+            </button>
+            <button onclick="mudarTab('animais')" class="tab-btn" data-tab="animais">
+              <i class="bi bi-heart"></i> Animais
+            </button>
+            <button onclick="mudarTab('adocoes')" class="tab-btn" data-tab="adocoes">
+              <i class="bi bi-send"></i> Adocoes
+            </button>
+            <button onclick="mudarTab('transportes')" class="tab-btn" data-tab="transportes">
+              <i class="bi bi-truck"></i> Transportes
+            </button>
+            <button onclick="mudarTab('denuncias')" class="tab-btn" data-tab="denuncias">
+              <i class="bi bi-flag"></i> Denuncias
+            </button>
+          </div>
+          <button id="btn-adicionar" onclick="abrirModalAdicionar()" class="tab-btn"
+            style="background: var(--primary); color: white;">
+            <i class="bi bi-plus-lg"></i> <span id="btn-adicionar-texto">Novo Usuario</span>
+          </button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr id="table-head">
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Papel</th>
+              <th>Acoes</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Dados carregados via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>2024 Adopet. Feito com <i class="bi bi-heart-fill"></i> para os animais.</p>
+  </footer>
+
+  <!-- Modal Usuario -->
+  <div id="modal-usuario" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-title-icon"><i class="bi bi-person-plus"></i></div>
+          <span id="modal-usuario-titulo">Novo Usuario</span>
+        </div>
+        <button class="modal-close" onclick="fecharModal('modal-usuario')">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <form id="form-usuario" onsubmit="salvarUsuario(event)">
+        <div class="modal-body">
+          <input type="hidden" id="usuario-id">
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-person"></i> Nome Completo
+            </label>
+            <input type="text" id="usuario-nome" class="form-input" placeholder="Digite o nome completo" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-envelope"></i> Email
+            </label>
+            <input type="email" id="usuario-email" class="form-input" placeholder="email@exemplo.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-lock"></i> Senha
+            </label>
+            <input type="password" id="usuario-senha" class="form-input" placeholder="Digite a senha">
+            <p class="form-hint">Deixe em branco para manter a senha atual (ao editar)</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-shield"></i> Papel
+            </label>
+            <select id="usuario-papel" class="form-select" required>
+              <option value="USUARIO">Usuario</option>
+              <option value="ADMINISTRADOR">Administrador</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="fecharModal('modal-usuario')">Cancelar</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Animal -->
+  <div id="modal-animal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-title-icon"><i class="bi bi-heart-pulse"></i></div>
+          <span id="modal-animal-titulo">Novo Animal</span>
+        </div>
+        <button class="modal-close" onclick="fecharModal('modal-animal')">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <form id="form-animal" onsubmit="salvarAnimal(event)">
+        <div class="modal-body">
+          <input type="hidden" id="animal-id">
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-type"></i> Nome do Pet
+            </label>
+            <input type="text" id="animal-nome" class="form-input" placeholder="Ex: Rex, Luna, Thor..." required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="bi bi-list-ul"></i> Especie
+              </label>
+              <select id="animal-especie" class="form-select" required>
+                <option value="">Selecione</option>
+                <option value="Cachorro">Cachorro</option>
+                <option value="Gato">Gato</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                <i class="bi bi-bookmark"></i> Raca
+              </label>
+              <input type="text" id="animal-raca" class="form-input" placeholder="Ex: Vira-lata, Siames...">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="bi bi-calendar3"></i> Idade (anos)
+              </label>
+              <input type="number" id="animal-idade" class="form-input" min="0" value="1" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                <i class="bi bi-image"></i> URL da Foto
+              </label>
+              <input type="url" id="animal-foto" class="form-input" placeholder="https://...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-text-paragraph"></i> Descricao
+            </label>
+            <textarea id="animal-descricao" class="form-textarea" rows="3"
+              placeholder="Personalidade, habitos e informacoes relevantes..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Saude do Pet</label>
+            <div class="form-check-group">
+              <label class="form-check">
+                <input type="checkbox" id="animal-vacinado">
+                <span class="form-check-label"><i class="bi bi-shield-check"></i> Vacinado</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="animal-castrado">
+                <span class="form-check-label"><i class="bi bi-scissors"></i> Castrado</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="fecharModal('modal-animal')">Cancelar</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Transporte (Rastreamento) -->
+  <div id="modal-transporte" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="modal-title-icon" style="background: var(--purple-bg); color: var(--purple);"><i
+              class="bi bi-truck"></i></div>
+          <span id="modal-transporte-titulo">Rastreamento do Transporte</span>
+        </div>
+        <button class="modal-close" onclick="fecharModal('modal-transporte')">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="transporte-info"
+          style="margin-bottom: 1rem; padding: 1rem; background: var(--gray-50); border-radius: 8px;">
+          <p style="font-size: 0.8125rem; color: var(--gray-600);"><strong>ID:</strong> <span
+              id="transporte-id-display">-</span></p>
+          <p style="font-size: 0.8125rem; color: var(--gray-600);"><strong>Adocao:</strong> <span
+              id="transporte-adocao-display">-</span></p>
+          <p style="font-size: 0.8125rem; color: var(--gray-600);"><strong>Criado em:</strong> <span
+              id="transporte-criado-display">-</span></p>
+        </div>
+        <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.75rem;">Historico de
+          Rastreamento</h4>
+        <div id="transporte-timeline" class="timeline">
+          <!-- Timeline items serao inseridos aqui -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="fecharModal('modal-transporte')">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

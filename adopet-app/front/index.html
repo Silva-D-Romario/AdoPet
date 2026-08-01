@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopet | Encontre seu novo melhor amigo</title>
+  <meta name="description" content="Plataforma de adocao de animais. Encontre caes e gatos para adotar.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa fa-paw"></i></div>
+        <!-- <div class="logo-icon"><i class="bi bi-heart-pulse-fill"></i></div> -->
+        <span>Adopet</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+          <i class="bi bi-moon"></i>
+          <i class="bi bi-sun"></i>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+
+      <nav id="nav-auth" class="nav"></nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">
+        <i class="bi bi-check-circle-fill"></i>
+        <span>Plataforma verificada de adocao</span>
+      </div>
+      <h1 class="hero-title">
+        Encontre seu novo<br><span class="highlight">melhor amigo</span>
+      </h1>
+      <p class="hero-description">
+        Conectamos animais que precisam de um lar com pessoas que querem fazer a diferenca. Adote e transforme duas
+        vidas.
+      </p>
+      <div class="hero-actions">
+        <a href="#animais" class="btn btn-primary btn-lg">
+          <i class="bi bi-search"></i> Explorar pets
+        </a>
+        <a href="cadastro-animal.html" class="btn btn-secondary btn-lg">
+          <i class="bi bi-heart-fill"></i> Doar um pet
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">2.500+</div>
+          <div class="hero-stat-label">Pets adotados</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">1.200+</div>
+          <div class="hero-stat-label">Doadores ativos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">98%</div>
+          <div class="hero-stat-label">Satisfacao</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animals Section -->
+    <section id="animais">
+      <div class="page-header">
+        <div class="page-header-content">
+          <div>
+            <h2 class="page-title">
+              <div class="page-title-icon"><i class="bi bi-grid-1x2"></i></div>
+              Pets disponiveis
+            </h2>
+            <p class="page-subtitle">Conheca os animais que estao esperando por voce</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="lista-animais" class="grid grid-cols-1 grid-cols-2 grid-cols-3">
+        <!-- Loaded via JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">2024 Adopet. Feito com <i class="bi bi-heart-fill" style="color: var(--primary);"></i> para
+        os animais.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
